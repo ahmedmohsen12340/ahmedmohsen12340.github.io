@@ -45,7 +45,7 @@
           <span class="hero__role-text" id="roleText"></span>
           <span class="hero__cursor" aria-hidden="true">|</span>
         </p>
-        <p class="hero__tagline">Building scalable backend systems, RESTful APIs, and automation solutions with clean, maintainable code.</p>
+        <p class="hero__tagline">Building scalable backend systems, enterprise applications, RESTful APIs, and automation solutions with clean, maintainable code.</p>
         <div class="hero__actions">
           <a href="Assets/Ahmed_Mohsen_Resume.pdf" class="btn btn--primary" id="downloadCV">Download CV</a>
           <a href="#contact" class="btn btn--outline">Get in Touch</a>
@@ -65,8 +65,8 @@
         </div>
         <div class="about__content">
           <div class="about__text">
-            <p>Software Engineer with 3+ years of experience in building scalable backend systems using ASP.NET Core, Entity Framework Core, and SQL Server. Experienced in designing RESTful APIs, real-time applications with SignalR, and automation solutions using UiPath.</p>
-            <p>Skilled in backend architecture, database design, and system integration, with a strong focus on performance, security, and maintainable code.</p>
+            <p>Software Engineer specializing in .NET development and RPA, building scalable backend systems and enterprise applications using ASP.NET Core, Entity Framework Core, and SQL Server. Experienced in RESTful API design, real-time applications with SignalR, and UiPath automation.</p>
+            <p>Focused on backend architecture, database design, and system integration, with an emphasis on performance, security, and maintainability.</p>
           </div>
           <ul class="about__info">
             <li><span class="about__label">Full Name</span><span>Ahmed Mohsen Hafez</span></li>
@@ -128,8 +128,8 @@
           <p class="section__eyebrow">03 / Toolkit</p>
           <h2 class="section__title">Skills &amp; Tools</h2>
         </div>
-        <div class="skills__carousel" id="skillsCarousel">
-          <button class="skills__arrow skills__arrow--prev" aria-label="Previous skill category">&#8249;</button>
+        <div class="skills__carousel" id="skillsCarousel" role="group" aria-label="Skills carousel">
+          <button type="button" class="skills__arrow skills__arrow--prev" aria-label="Previous skill category">&#8249;</button>
           <div class="skills__viewport">
           <div class="skills__track" id="skillsTrack">
             <div class="skills__slide" data-index="0">
@@ -145,11 +145,13 @@
                 <span class="skill__tag">LINQ</span>
                 <span class="skill__tag">Entity Framework Core</span>
                 <span class="skill__tag">SignalR</span>
-                <span class="skill__tag">Windows Service</span>
-                <span class="skill__tag">ML.NET</span>
-                <span class="skill__tag">IIS</span>
+                <span class="skill__tag">Windows Services</span>
+                <span class="skill__tag">RabbitMQ</span>
+                <span class="skill__tag">Asynchronous Messaging</span>
                 <span class="skill__tag">Background Jobs</span>
                 <span class="skill__tag">Hangfire</span>
+                <span class="skill__tag">ML.NET</span>
+                <span class="skill__tag">IIS</span>
               </div>
             </div>
             <div class="skills__slide" data-index="1">
@@ -174,14 +176,6 @@
               </div>
             </div>
             <div class="skills__slide" data-index="3">
-              <h3 class="skills__slide-title">Version Control</h3>
-              <div class="skills__tags">
-                <span class="skill__tag">Git</span>
-                <span class="skill__tag">GitHub</span>
-                <span class="skill__tag">Azure DevOps</span>
-              </div>
-            </div>
-            <div class="skills__slide" data-index="4">
               <h3 class="skills__slide-title">Database</h3>
               <div class="skills__tags">
                 <span class="skill__tag">Transact-SQL (T-SQL)</span>
@@ -191,11 +185,37 @@
                 <span class="skill__tag">Redis</span>
                 <span class="skill__tag">SSIS</span>
                 <span class="skill__tag">SSRS</span>
+              </div>
+            </div>
+            <div class="skills__slide" data-index="4">
+              <h3 class="skills__slide-title">Cloud Platforms &amp; Services</h3>
+              <div class="skills__tags">
+                <span class="skill__tag">Microsoft Azure</span>
+                <span class="skill__tag">Azure App Service</span>
+                <span class="skill__tag">Azure Storage</span>
+                <span class="skill__tag">Azure Service Bus</span>
                 <span class="skill__tag">Azure SQL</span>
                 <span class="skill__tag">Azure Cosmos DB</span>
               </div>
             </div>
             <div class="skills__slide" data-index="5">
+              <h3 class="skills__slide-title">Version Control</h3>
+              <div class="skills__tags">
+                <span class="skill__tag">Git</span>
+                <span class="skill__tag">GitHub</span>
+                <span class="skill__tag">Azure DevOps</span>
+              </div>
+            </div>
+            <div class="skills__slide" data-index="6">
+              <h3 class="skills__slide-title">AI-Powered Development Tools</h3>
+              <div class="skills__tags">
+                <span class="skill__tag">Claude Code</span>
+                <span class="skill__tag">OpenCode</span>
+                <span class="skill__tag">Google Antigravity</span>
+                <span class="skill__tag">GitHub Copilot</span>
+              </div>
+            </div>
+            <div class="skills__slide" data-index="7">
               <h3 class="skills__slide-title">Others &amp; Tools</h3>
               <div class="skills__tags">
                 <span class="skill__tag">CI / CD</span>
@@ -209,7 +229,7 @@
                 <span class="skill__tag">Postman</span>
               </div>
             </div>
-            <div class="skills__slide" data-index="6">
+            <div class="skills__slide" data-index="8">
               <h3 class="skills__slide-title">Soft Skills</h3>
               <div class="skills__tags">
                 <span class="skill__tag">Bias for Action</span>
@@ -220,7 +240,7 @@
             </div>
           </div>
           </div>
-          <button class="skills__arrow skills__arrow--next" aria-label="Next skill category">&#8250;</button>
+          <button type="button" class="skills__arrow skills__arrow--next" aria-label="Next skill category">&#8250;</button>
           <div class="skills__dots" id="skillsDots"></div>
         </div>
       </div>
@@ -251,6 +271,16 @@
             <ul class="project__desc">
               <li>Implemented SQL Server Always Encrypted to secure sensitive customer data.</li>
               <li>Refactored complex stored procedures into Entity Framework Core while preserving performance and business logic.</li>
+            </ul>
+          </div>
+          <div class="project__card">
+            <div class="project__header">
+              <h3 class="project__title">.NET &amp; Front-End Modernization</h3>
+              <span class="project__org">Xceed</span>
+            </div>
+            <ul class="project__desc">
+              <li>Backend Modernization: Led the migration of legacy .NET Framework applications to v4.8.1 and .NET Core systems to .NET 9, refactoring deprecated APIs and optimizing code for stability and performance.</li>
+              <li>Front-End &amp; Maintainability: Upgraded front-end dependencies (jQuery, Bootstrap) to supported versions, eliminating security vulnerabilities and improving UI consistency and long-term maintainability.</li>
             </ul>
           </div>
           <div class="project__card">

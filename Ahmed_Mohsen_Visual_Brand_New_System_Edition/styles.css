@@ -638,7 +638,7 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-1);
-  max-width: 720px;
+  width: 100%;
 }
 
 .skill__tag {
@@ -685,6 +685,13 @@ button {
   border-color: var(--evergreen);
 }
 
+.skills__arrow:focus-visible {
+  outline: none;
+  background: var(--fog);
+  border-color: var(--evergreen);
+  box-shadow: 0 0 0 3px rgba(21, 59, 53, 0.12);
+}
+
 .skills__arrow--prev { left: 0; }
 .skills__arrow--next { right: 0; }
 
@@ -707,6 +714,12 @@ button {
 }
 
 .skills__dot:hover {
+  background: var(--mid-pine);
+  transform: scale(1.25);
+}
+
+.skills__dot:focus-visible {
+  outline: none;
   background: var(--mid-pine);
   transform: scale(1.25);
 }

@@ -143,10 +143,10 @@ class SkillsCarousel {
     this.interval = interval;
     this.timer = null;
     this.isPaused = false;
-    this.isAnimating = false;
 
     this.observer = null;
     this.isInView = false;
+    this.handleKeydown = this.handleKeydown.bind(this);
   }
 
   init() {
@@ -155,6 +155,7 @@ class SkillsCarousel {
 
     this.createDots();
     this.bindControls();
+    document.addEventListener('keydown', this.handleKeydown);
     this.initTouch();
     this.startAutoPlay();
     this.initScrollObservation();
@@ -181,6 +182,23 @@ class SkillsCarousel {
 
     carousel.addEventListener('mouseenter', () => { this.isPaused = true; });
     carousel.addEventListener('mouseleave', () => { this.isPaused = false; });
+    carousel.addEventListener('focusin', () => { this.isPaused = true; });
+    carousel.addEventListener('focusout', () => { this.isPaused = false; });
+  }
+
+  handleKeydown(event) {
+    if (!this.isInView) return;
+
+    const target = event.target;
+    if (target && (target.matches('input, textarea, select') || target.isContentEditable)) return;
+
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.next();
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.prev();
+    }
   }
 
   initTouch() {
@@ -207,21 +225,16 @@ class SkillsCarousel {
   }
 
   goTo(index) {
-    if (this.isAnimating) return;
     index = Math.max(0, Math.min(this.lastIndex, index));
     if (index === this.current) return;
-    this.isAnimating = true;
     this.current = index;
     this.track.classList.remove('skills__track--no-transition');
     this.track.style.transform = 'translateX(-' + (index * 100) + '%)';
     this.updateDots();
-    this.track.addEventListener('transitionend', () => {
-      this.isAnimating = false;
-    }, { once: true });
+    this.triggerEnter(index);
   }
 
   next() {
-    if (this.isAnimating) return;
     if (this.current === this.lastIndex) {
       this.current = 0;
       this.track.classList.add('skills__track--no-transition');
@@ -235,7 +248,6 @@ class SkillsCarousel {
   }
 
   prev() {
-    if (this.isAnimating) return;
     if (this.current === 0) {
       this.current = this.lastIndex;
       this.track.classList.add('skills__track--no-transition');
@@ -297,6 +309,7 @@ class SkillsCarousel {
 
   destroy() {
     this.stopAutoPlay();
+    document.removeEventListener('keydown', this.handleKeydown);
     if (this.observer) this.observer.disconnect();
   }
 }
