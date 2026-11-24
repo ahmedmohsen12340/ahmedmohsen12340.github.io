@@ -35,7 +35,11 @@
   --max-width: 1200px;
   --nav-height: 72px;
 
-  --transition: 240ms ease;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --transition: 240ms var(--ease);
 }
 
 *,
@@ -65,6 +69,11 @@ body {
 img {
   max-width: 100%;
   display: block;
+}
+
+::selection {
+  background: var(--mid-pine);
+  color: var(--parchment);
 }
 
 a {
@@ -175,6 +184,7 @@ button {
   gap: 5px;
   background: none;
   border: 1px solid var(--mid-pine);
+  border-radius: var(--radius-sm);
   padding: 9px;
   cursor: pointer;
 }
@@ -286,7 +296,7 @@ button {
   line-height: 1;
   letter-spacing: -0.08em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(244, 241, 232, 0.09);
+  -webkit-text-stroke: 1px var(--mid-pine);
   user-select: none;
   pointer-events: none;
 }
@@ -325,7 +335,16 @@ button {
   font-size: 0.9rem;
   font-weight: 600;
   border: 1px solid transparent;
-  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition), transform var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(0);
 }
 
 .btn--primary {
@@ -343,7 +362,7 @@ button {
 .btn--outline {
   background: transparent;
   color: var(--parchment);
-  border-color: rgba(244, 241, 232, 0.4);
+  border-color: var(--muted-on-dark);
 }
 
 .btn--outline:hover {
@@ -360,7 +379,7 @@ button {
   border-top: 1px solid var(--line);
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 500ms ease, transform 500ms ease;
+  transition: opacity 500ms var(--ease), transform 500ms var(--ease);
 }
 
 .section--visible {
@@ -370,6 +389,7 @@ button {
 
 .section--alt,
 .experience,
+.projects,
 .certifications {
   background: var(--ivory);
 }
@@ -426,8 +446,11 @@ button {
 
 .about__info {
   border: 1px solid var(--line);
+  border-top: 2px solid var(--evergreen);
   background: var(--ivory);
+  border-radius: var(--radius-lg);
   padding: var(--space-4);
+  box-shadow: 0 2px 8px rgba(27, 36, 33, 0.04);
 }
 
 .about__info li {
@@ -454,7 +477,7 @@ button {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--muted-text);
+  color: var(--ink);
 }
 
 .about__info span:last-child {
@@ -494,10 +517,11 @@ button {
   position: absolute;
   left: calc(-1 * var(--space-5) - 5px);
   top: 6px;
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   background: var(--burnt-copper);
   border: 2px solid var(--ivory);
+  border-radius: 50%;
 }
 
 .timeline__content {
@@ -572,7 +596,7 @@ button {
 
 .skills__track {
   display: flex;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s var(--ease);
   will-change: transform;
 }
 
@@ -589,6 +613,9 @@ button {
   min-height: 340px;
   background: var(--ivory);
   border: 1px solid var(--line);
+  border-top: 2px solid var(--evergreen);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(27, 36, 33, 0.04);
 }
 
 .skills__slide-title {
@@ -622,12 +649,14 @@ button {
   color: var(--ink);
   background: var(--parchment);
   border: 1px solid var(--line);
-  transition: border-color var(--transition), color var(--transition);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--transition), color var(--transition), background-color var(--transition);
   white-space: nowrap;
 }
 
 .skill__tag:hover {
   border-color: var(--evergreen);
+  background: var(--ivory);
   color: var(--evergreen);
 }
 
@@ -643,6 +672,7 @@ button {
   justify-content: center;
   background: var(--ivory);
   border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
   color: var(--evergreen);
   font-size: 1.5rem;
   line-height: 1;
@@ -651,7 +681,7 @@ button {
 }
 
 .skills__arrow:hover {
-  background: var(--pale-green);
+  background: var(--fog);
   border-color: var(--evergreen);
 }
 
@@ -670,17 +700,20 @@ button {
   height: 8px;
   background: var(--line);
   border: none;
+  border-radius: 50%;
   cursor: pointer;
   padding: 0;
-  transition: background-color var(--transition);
+  transition: background-color var(--transition), transform var(--transition);
 }
 
 .skills__dot:hover {
   background: var(--mid-pine);
+  transform: scale(1.25);
 }
 
 .skills__dot--active {
   background: var(--burnt-copper);
+  transform: scale(1.25);
 }
 
 @keyframes skillEnter {
@@ -689,7 +722,7 @@ button {
 }
 
 .skills__slide--enter {
-  animation: skillEnter 0.35s ease forwards;
+  animation: skillEnter 0.35s var(--ease) forwards;
 }
 
 /* ============================================================
@@ -711,7 +744,18 @@ button {
   background: var(--parchment);
   border: 1px solid var(--line);
   border-top: 2px solid var(--evergreen);
+  border-radius: var(--radius-lg);
   counter-increment: project;
+  box-shadow: 0 2px 8px rgba(27, 36, 33, 0.04);
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.project__card:hover {
+  border-color: var(--mid-pine);
+  border-top-color: var(--evergreen);
+  background: var(--ivory);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 36, 33, 0.08);
 }
 
 .project__card::before {
@@ -721,7 +765,7 @@ button {
   right: var(--space-4);
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--copper-ink);
+  color: var(--ink);
 }
 
 .project__header {
@@ -744,7 +788,7 @@ button {
   font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--muted-text);
+  color: var(--ink);
 }
 
 .project__desc {
@@ -791,6 +835,18 @@ button {
   padding: var(--space-4);
   background: var(--ivory);
   border: 1px solid var(--line);
+  border-top: 2px solid var(--evergreen);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(27, 36, 33, 0.04);
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+
+.edu__card:hover {
+  border-color: var(--mid-pine);
+  border-top-color: var(--evergreen);
+  background: var(--parchment);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 36, 33, 0.08);
 }
 
 .edu__icon {
@@ -800,6 +856,7 @@ button {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
   margin-bottom: var(--space-3);
   color: var(--evergreen);
 }
@@ -827,7 +884,7 @@ button {
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.04em;
-  color: var(--copper-ink);
+  color: var(--ink);
 }
 
 /* ============================================================
@@ -847,12 +904,18 @@ button {
   padding: var(--space-4);
   background: var(--parchment);
   border: 1px solid var(--line);
-  transition: border-color var(--transition), background-color var(--transition);
+  border-top: 2px solid var(--evergreen);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px rgba(27, 36, 33, 0.04);
+  transition: border-color var(--transition), background-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .cert__card:hover {
-  border-color: var(--evergreen);
-  background: var(--pale-green);
+  border-color: var(--mid-pine);
+  border-top-color: var(--evergreen);
+  background: var(--ivory);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(27, 36, 33, 0.08);
 }
 
 .cert__icon {
@@ -862,6 +925,7 @@ button {
   align-items: center;
   justify-content: center;
   border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
   margin-bottom: var(--space-3);
   color: var(--evergreen);
 }
@@ -884,7 +948,7 @@ button {
   font-size: 0.75rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--muted-text);
+  color: var(--ink);
 }
 
 /* ============================================================
@@ -923,11 +987,12 @@ button {
   align-items: center;
   gap: var(--space-1);
   padding: 12px var(--space-3);
-  border: 1px solid rgba(244, 241, 232, 0.28);
+  border: 1px solid var(--muted-on-dark);
+  border-radius: var(--radius-sm);
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--parchment);
-  transition: border-color var(--transition), background-color var(--transition);
+  transition: border-color var(--transition), background-color var(--transition), color var(--transition), transform var(--transition);
 }
 
 .contact__link svg {
@@ -939,6 +1004,7 @@ button {
   border-color: var(--copper-light);
   background: var(--dark-raised);
   color: var(--copper-light);
+  transform: translateY(-2px);
 }
 
 /* ============================================================
@@ -975,6 +1041,7 @@ button {
   justify-content: center;
   background: var(--evergreen);
   border: 1px solid var(--mid-pine);
+  border-radius: var(--radius-md);
   color: var(--parchment);
   cursor: pointer;
   opacity: 0;
